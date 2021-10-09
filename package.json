@@ -1,0 +1,19 @@
+{
+  "name": "a-c-w",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fangzhonghua/a-c-w.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fangzhonghua/a-c-w/issues"
+  },
+  "homepage": "https://github.com/fangzhonghua/a-c-w#readme"
+}
