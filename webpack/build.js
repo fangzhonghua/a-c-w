@@ -6,14 +6,6 @@ const getBaseConfig = require('./base');
 module.exports =(env, argv)=> {
   return {
     ...getBaseConfig(env, argv),
-    mode: 'development',
-    devtool: 'source-map',
-    devServer:{
-      static: false,
-      port: 8001,
-      hot: true,
-      // host: "0.0.0.0",
-      // disableHostCheck: true
-    }
+    mode: 'production'
   }
 }

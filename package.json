@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .js --ext .jsx src/",
     "prepare": "husky install",
-    "dev": "webpack-dev-server --config webpack/dev.js"
+    "dev": "webpack-dev-server --config webpack/dev.js",
+    "build": "webpack --config webpack/build.js"
   },
   "repository": {
     "type": "git",
@@ -26,16 +27,23 @@
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
     "babel-loader": "^8.2.2",
+    "babel-plugin-import": "^1.13.3",
     "babel-polyfill": "^6.26.0",
+    "css-loader": "^6.4.0",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.26.1",
     "html-webpack-plugin": "^5.3.2",
     "husky": "^7.0.2",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "style-loader": "^3.3.1",
     "webpack": "^5.58.1",
     "webpack-cli": "^4.9.0",
     "webpack-dev-server": "^4.3.1"
   },
   "dependencies": {
+    "antd": "^4.16.13",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }

@@ -4,10 +4,13 @@ const webpack = require('webpack');
 
 const getBaseConfig = (env, argv) => {
   const baseConfig = {
-    entry: ["babel-polyfill",'./src/index.js'],
+    entry: {
+      app:["babel-polyfill",'./src/main.js'],
+      // vendor:['react','antd']
+    },
     output: {
-      path: path.resolve(__dirname, 'dist'),
-      filename: 'main.js'
+      path: path.resolve(__dirname, '../dist'),
+      filename: '[name].js'
     },
     module:{
       rules:[

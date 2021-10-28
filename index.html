@@ -1,13 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>本地开发</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>本地开发</title>
 </head>
 <body>
-  dadasd
-  <div id="web-component-root"></div>
+    <button id="button1">button1</button>
+    <button id="button2">button2</button>
+    <!-- <div id="web-component-root"></div> -->
+    <script>
+        var button1 = document.getElementById("button1");
+        var button2 = document.getElementById("button2");
+        [button1, button2].forEach((item) => {
+            item.addEventListener("click", handleClickBtn);
+            function handleClickBtn() {
+            const flowCompIns = window.flowComp({
+                btn: item.id,
+                userId: "eeccdb60-2511-4a7e-87f1-58a51aa7fbdc",
+                tenantId: "0000KO42POTJDOJAJU0000",
+                appsource: "PU",
+                width: 850,
+                height: 510,
+                bpmHost: "https://ys-u8c-daily.yyuap.com",
+                lang: "zh-CN",
+                businessKey: item.id,
+                onload(callbackData) {
+                // callbackData.fieldAuth 为字段权限信息
+                console.log(callbackData.fieldAuth);
+                },
+                onAfterAction(data) {
+                console.log(data);
+                },
+                loadCompleted(callbackData) {
+                console.log("loadCompleted.callbackData =====>", callbackData);
+                },
+            });
+
+            flowCompIns.showFlowBox({
+                el: "#box",
+                extApproveComponent: {
+                extApproveComponentURL: "https://baidu.com",
+                extApproveComponentName: "123",
+                },
+                formDetailUrl: "https://www.baidu.com",
+                onClose(callbackData) {
+                console.log("onClose.callbackData =====>", callbackData);
+                // 如果字段权限需要更新，回调参数里会有fieldAuth字段
+                if (callbackData.fieldAuth) {
+                    // document.querySelector('#authtest').innerHTML = callbackData.fieldAuth['mainTable']['contact'].editable
+                    // console.log(callbackData.fieldAuth)
+                }
+                },
+            });
+            }
+        });
+    </script>
 </body>
 </html>
