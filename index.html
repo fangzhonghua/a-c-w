@@ -10,7 +10,11 @@
     <button id="button1">button1</button>
     <button id="button2">button2</button>
     <!-- <div id="web-component-root"></div> -->
+
     <script>
+        window.flowCompParams = { 
+            host: 'https://bip-daily.yyuap.com/iuap-apcom-workflow' //日常
+        };
         var button1 = document.getElementById("button1");
         var button2 = document.getElementById("button2");
         [button1, button2].forEach((item) => {
@@ -18,14 +22,14 @@
             function handleClickBtn() {
             const flowCompIns = window.flowComp({
                 btn: item.id,
-                userId: "eeccdb60-2511-4a7e-87f1-58a51aa7fbdc",
-                tenantId: "0000KO42POTJDOJAJU0000",
+                userId: "7f3c1590-3286-450a-99af-51d1b9224d49",
+                tenantId: '0000KR5QX2GOBNNR5L0000',
                 appsource: "PU",
                 width: 850,
                 height: 510,
-                bpmHost: "https://ys-u8c-daily.yyuap.com",
+                bpmHost: "https://bip-daily.yyuap.com/iuap-apcom-workflow",
                 lang: "zh-CN",
-                businessKey: item.id,
+                businessKey: 'st_purchaseorder_2493817822826752',
                 onload(callbackData) {
                 // callbackData.fieldAuth 为字段权限信息
                 console.log(callbackData.fieldAuth);

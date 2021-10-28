@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './main.less';
 import App from './App';
-
+import { setAxios, _axios} from './common/request'
 
 class FlowComp {
     constructor(options) {
@@ -13,6 +13,10 @@ class FlowComp {
     }
     init() {
         // this.visible = true
+        setAxios(this.options)
+        _axios.get('approve-component/api/v1/activity/authority/'+this.options.businessKey).then((res)=>{
+            this.options.onload(res&&{fieldAuth:res.data})
+        })
     }
     hideApp() {
         // this.visible = false
@@ -52,6 +56,7 @@ class FlowComp {
     }
     
 }
+
 var dataCache = {}
 const flowComp = function (options = {}) {
 

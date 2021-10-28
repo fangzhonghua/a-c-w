@@ -12,8 +12,7 @@ module.exports =(env, argv)=> {
       static: false,
       port: 8001,
       hot: true,
-      // host: "0.0.0.0",
-      // disableHostCheck: true
+      allowedHosts: ['localhost','test.yyuap.com']
     }
   }
 }
