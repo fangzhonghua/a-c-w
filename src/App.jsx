@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Drawer } from 'antd';
 import './App.less';
+import lang from "ac-lang-cn";
 
 class App extends React.Component {
   constructor(props) {
@@ -23,14 +24,12 @@ class App extends React.Component {
     const { visible } = this.state;
     return <div className={`approve-component ${visible?'visible':'hide'}`}>
       <div className='content'>
-        {/* 注释fzh */}
-      {options.btn}
       </div>
-            <Drawer title={options.btn} placement="right" onClose={this.onClose.bind(this)} visible={visible}>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-        </Drawer>
+      <Drawer title={options.btn} placement="right" onClose={this.onClose.bind(this)} visible={visible}>
+          <p>{options.btn}</p>
+          <p>{lang.template("P_YS_OA_XTLCZX_0001428068") /* "保存常用语" */}</p>
+          <p>{lang.template("P_YS_OA_XTLCZX_0001428070") /* "取消保存常用语" */}</p>
+      </Drawer>
     </div>
   }
 }

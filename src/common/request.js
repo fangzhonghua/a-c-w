@@ -12,7 +12,7 @@ const setAxios = (options) =>{
   _axios.defaults.headers['tenantId'] = tenantId
   _axios.defaults.headers['userId'] = userId
   _axios.defaults.withCredentials = true
-  _axios.defaults.baseURL = 'https://bip-daily.yyuap.com/iuap-apcom-workflow/'
+  _axios.defaults.baseURL = options.bpmHost
 
   _axios.interceptors.response.use((response) => {
       // console.log('response',response)

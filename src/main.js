@@ -3,19 +3,39 @@ import ReactDOM from 'react-dom';
 import './main.less';
 import App from './App';
 import { setAxios, _axios} from './common/request'
+import lang from "ac-lang-cn";
+import utils from './common/utils';
 
 class FlowComp {
     constructor(options) {
         if (Array.isArray(options)) return;
         if (!(options instanceof Object)) return;
         this.options = options;
+        this.options.bpmHost||(this.options.bpmHost=window.flowCompParams.host)
+        this.options.lang = utils.getlang(this.options.lang)
         this.init();
     }
     init() {
         // this.visible = true
         setAxios(this.options)
-        _axios.get('approve-component/api/v1/activity/authority/'+this.options.businessKey).then((res)=>{
+        _axios.get('/approve-component/api/v1/activity/authority/'+this.options.businessKey).then((res)=>{
             this.options.onload(res&&{fieldAuth:res.data})
+        })
+        this.lang_is_ready = this.setlang().then(res=>console.log(res))
+    }
+    setlang() {
+        lang.init({}, null);
+        lang.setPack(require('./locale/pack.json')[this.options.lang]) // 本地多语包
+        lang.lang = this.options.lang;
+        const langUrl = utils.getLangUrl(this.options.bpmHost)
+        return new Promise((resolve)=>{
+            lang.jsonp(this.options.tenantId,'ys_OA_XTLCZX',langUrl,(data)=>{
+                lang.setPack(data) // 在线多语包
+                resolve('webapprove load langurage from online')
+            },'YS',false,false);
+            setTimeout(()=>{
+                resolve('webapprove load langurage from local')
+            },5000)
         })
     }
     hideApp() {
@@ -28,6 +48,7 @@ class FlowComp {
         this.insertDom()
     }
     async insertDom() {
+        await this.lang_is_ready
         this.container = document.getElementById('web-component-root');
         if(!this.container){
             var container = document.createElement('div');
@@ -35,7 +56,6 @@ class FlowComp {
             document.body.appendChild(container);
             this.container = container;
         }
-        console.log(App)
         ReactDOM.render(
             <React.StrictMode>
               <App 
@@ -51,15 +71,14 @@ class FlowComp {
         this.options.onload({fieldAuth:"authData"})
     }
     destroy() {
-        console.log('销毁')
+        console.log(lang.template("P_YS_PF_ECON-FE_0001309293") /* "销毁" */)
         ReactDOM.unmountComponentAtNode(this.container)
     }
     
 }
-
 var dataCache = {}
 const flowComp = function (options = {}) {
-
+    console.log(lang.template("P_YS_OA_XTLCZX_0001447584") /* "删除常用语" */)
     const businessKey = options.businessKey
     let compIns
     // 首次实例化
